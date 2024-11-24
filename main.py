@@ -21,7 +21,7 @@ client.remove_command("help")
 async def on_ready():
     print ("Ah shit, here we go again")
 
-@client.event
+@client.event 
 async def on_server_join(server):
     print("Joining {0}".format(server.name))
 
