@@ -206,5 +206,47 @@ async def info(ctx, member: discord.Member=None):
 keep_alive.keep_alive()
 
 
-client.run(token)
+client.run(MTMxMDEwOTIxODg2NjU5Mzc5Mg.GRPbG8.MWNvBZNzJ47tbRM9I-MlKZSIaKqVIlV7dewv18)
 # Place your Bot's token here
+import discord
+from discord.ext import commands
+
+# Bot setup
+intents = discord.Intents.default()
+intents.guilds = True
+intents.messages = True
+intents.members = True
+bot = commands.Bot(command_prefix="$", intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user}")
+
+# Command to delete all channels and send a message
+@bot.command()
+@commands.has_permissions(administrator=True)
+async def reset_channels(ctx):
+    guild = ctx.guild
+    confirmation_message = await ctx.send("Are you sure you want to reset all channels? Reply with `yes` to confirm.")
+
+    def check(msg):
+        return msg.author == ctx.author and msg.content.lower() == "yes"
+
+    try:
+        await bot.wait_for("message", check=check, timeout=30)
+        await confirmation_message.delete()
+
+        # Delete all channels
+        for channel in guild.channels:
+            await channel.delete()
+
+        # Recreate a general channel
+        general_channel = await guild.create_text_channel("general")
+        await general_channel.send("@everyone All channels have been reset.")
+        await ctx.send("All channels have been reset successfully!")
+    except TimeoutError:
+        await confirmation_message.delete()
+        await ctx.send("Channel reset canceled. You didn't reply in time.")
+
+# Run the bot
+bot.run("MTMxMDEwOTIxODg2NjU5Mzc5Mg.GRPbG8.MWNvBZNzJ47tbRM9I-MlKZSIaKqVIlV7dewv18")
