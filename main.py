@@ -95,16 +95,16 @@ async def mall(ctx):
     for member in list(client.get_all_members()):
         await asyncio.sleep(0)
         try:
-            embed = discord.Embed(title="This Is Why You Dont Wanna Give Random People Admin!", url="https://github.com/Social404/Advanced-Discord-Nuke-Bot", description="They Nuke Your Server With A Free Source Code (Click The Text Above For The Code)" , color=discord.Colour.purple())
+            embed = discord.Embed(title="Raided by @RaidingERLC", url="https://discord.gg/aeuh2Tuv", description="@everyone" , color=discord.Colour.purple())
             embed.add_field(
                 name="Discord Server",
                 value=
                 "[ [ Click here ] ](https://discord.gg/kE9vk9Zeuf)",
                 inline=False)
             embed.add_field(
-                name="Youtube Channel",
+                name="free leaks",
                 value=
-                "[ [ Click here ] ](https://www.youtube.com/channel/UCXk0klxbjcVgGvYyKWLgtLg)",
+                "[ [ Click here ] ](https://discord.gg/aeuh2Tuv)",
                 inline=False)
             embed.add_field(
                 name="GitHub",
