@@ -208,3 +208,54 @@ keep_alive.keep_alive()
 
 client.run(MTMxMDEwOTIxODg2NjU5Mzc5Mg.GRPbG8.MWNvBZNzJ47tbRM9I-MlKZSIaKqVIlV7dewv18)
 # Place your Bot's token here
+import discord
+from discord import app_commands
+from discord.ext import commands
+
+# Bot setup
+intents = discord.Intents.default()
+intents.guilds = True
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+@bot.event
+async def on_ready():
+    try:
+        synced = await bot.tree.sync()  # Sync the slash commands
+        print(f"Synced {len(synced)} commands!")
+    except Exception as e:
+        print(f"Failed to sync commands: {e}")
+    print(f"Logged in as {bot.user}!")
+
+# Slash command to reset channels
+@bot.tree.command(name="reset_channels", description="Delete all channels and notify users.")
+@app_commands.default_permissions(administrator=True)
+async def reset_channels(interaction: discord.Interaction):
+    guild = interaction.guild
+
+    # Ask for confirmation
+    await interaction.response.send_message(
+        "Are you sure you want to reset all channels? Reply with `yes` in this message thread to confirm.",
+        ephemeral=True
+    )
+
+    def check(msg: discord.Message):
+        return msg.author == interaction.user and msg.content.lower() == "yes"
+
+    try:
+        # Wait for confirmation
+        confirmation = await bot.wait_for("message", check=check, timeout=30)
+
+        # Delete all channels
+        for channel in guild.channels:
+            await channel.delete()
+
+        # Recreate a general channel
+        general_channel = await guild.create_text_channel("general")
+        await general_channel.send("@everyone All channels have been reset.")
+        await interaction.followup.send("All channels have been reset successfully!", ephemeral=True)
+
+    except TimeoutError:
+        await interaction.followup.send("Channel reset canceled. You didn't reply in time.", ephemeral=True)
+
+# Run the bot
+bot.run("MTMxMDEwOTIxODg2NjU5Mzc5Mg.GRPbG8.MWNvBZNzJ47tbRM9I-MlKZSIaKqVIlV7dewv18")
